@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        <!-- <bean name="/login" class="com.contronller.UserController"></bean> -->
+        <!-- <mvc:resources mapping="/config/**" location="/config/" />
+ 	 	<mvc:resources mapping="/images/**" location="/images/" />
+  		<mvc:resources mapping="/js/**" location="/js/" /> -->
+  		<!-- 开启组件扫描，支持@controller注解，并且@RequestMapping驱动注解的方法通过value可以访问 -->
+        <context:component-scan base-package="com"></context:component-scan>
+        <mvc:annotation-driven/>
+        <mvc:default-servlet-handler/>
+        <!-- 配置视图解析器,把controller返回的字符串映射到指定的jsp下 -->
+        <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        	<property name="prefix" value="/WEB-INF/jsp/"></property><!-- 前缀 -->
+        	<property name="suffix" value=".jsp"></property><!-- 后缀 -->
+        </bean>
+        <!-- 配置全局异常处理器 -->
+        <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver" p:exceptionAttribute="ex"
+        >
+        	<property name="exceptionMappings">
+        		<props>
+        			<prop key="java.lang.Exception">fail</prop>
+        		</props>
+        	</property>
+        </bean>
+	</beans>
