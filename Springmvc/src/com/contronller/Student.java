@@ -54,6 +54,6 @@ public class Student {
 	//后台传值给前台jsp页面方法2
 		public String method2(Model model){
 			model.addAttribute("stuName", "张三");
-			return "success";
+			return "fail";
 		}
 }
